@@ -1,6 +1,23 @@
 version: '3'
 
 services:
+  db:
+    image: mysql
+    platform: linux/amd64
+    container_name: mysql-con
+    env_file:
+      - ./.env
+    ports:
+      - 3307:3306
+    expose:
+      - 3306
+    volumes:
+      - data_mysql:/mysql
+    networks:
+      - app-tier
+    # 명령어 실행 끝나도 안꺼짐
+    tty: true
+
   frontend:
     # Dockerfile의 경로
     build: ./frontend
@@ -12,3 +29,43 @@ services:
       - ./frontend:/frontend
     # docker container 특성상 커맨드 끝나면 컨테이너가 종료되는데 이를 방지하기 위해 tty 옵션 추가
     tty: true
+
+  backend:
+      links:
+        - db
+      container_name: backend-con
+      build:
+        context: ./backend
+      ports:
+        - 8000:8000
+      expose:
+        - 8000
+      volumes:
+        - ./backend:/backend/
+      # restart: always 배포때만
+      env_file:
+        - ./.env
+      depends_on:
+        - db
+      # command: 
+      networks:
+        - app-tier
+      # 명령어 실행 끝나도 안꺼짐
+      tty: true
+
+  networks:
+      - app-tier
+  volumes:
+      - ./frontend-web/:/frontend-web
+      - build_folder:/frontend-web/build
+      - ./frontend-web/node_modules/:/frontend-web/node_modules
+  ports:
+      - 3000:3000
+    
+networks:
+  app-tier:
+    external: true
+  
+volumes:
+  data_mysql:
+  build_folder:
