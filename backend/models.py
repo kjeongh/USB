@@ -4,8 +4,6 @@ from sqlalchemy.orm import relationship
 
 from database import Base
 
-import schemas, crud
-
 metadata = MetaData()
 
 
@@ -29,6 +27,7 @@ class Todo(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("user.id"))
+    task = Column(String(30))
     status = Column(String(20))
 
     def __init__(self, question: schemas.TodoCreate):
