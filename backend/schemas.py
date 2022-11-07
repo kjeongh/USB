@@ -1,5 +1,3 @@
-from sqlite3 import Timestamp
-from typing import Dict, List, Optional
 from pydantic import BaseModel
 
 
@@ -26,3 +24,6 @@ class Routine(BaseModel):
     id: int
     todo_id: int
     day: str
+
+    class Config:
+        orm_mode = True

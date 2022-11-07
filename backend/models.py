@@ -1,5 +1,4 @@
-from sqlite3 import Timestamp
-from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, Boolean, MetaData
+from sqlalchemy import Column, Integer, String, ForeignKey, MetaData
 from sqlalchemy.orm import relationship
 
 from database import Base
