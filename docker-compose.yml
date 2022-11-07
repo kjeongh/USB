@@ -31,41 +31,32 @@ services:
     tty: true
 
   backend:
-      links:
-        - db
-      container_name: backend-con
-      build:
-        context: ./backend
-      ports:
-        - 8000:8000
-      expose:
-        - 8000
-      volumes:
-        - ./backend:/backend/
-      # restart: always 배포때만
-      env_file:
-        - ./.env
-      depends_on:
-        - db
-      # command: 
-      networks:
-        - app-tier
-      # 명령어 실행 끝나도 안꺼짐
-      tty: true
-
-  networks:
+    links:
+      - db
+    container_name: backend-con
+    build:
+      context: ./backend
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    volumes:
+      - ./backend:/backend/
+    # restart: always 배포때만
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    # command:
+    networks:
       - app-tier
-  volumes:
-      - ./frontend-web/:/frontend-web
-      - build_folder:/frontend-web/build
-      - ./frontend-web/node_modules/:/frontend-web/node_modules
-  ports:
-      - 3000:3000
-    
+    # 명령어 실행 끝나도 안꺼짐
+    tty: true
+
 networks:
   app-tier:
     external: true
-  
+
 volumes:
   data_mysql:
   build_folder:
