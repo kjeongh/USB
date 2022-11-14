@@ -10,7 +10,7 @@ export const Btn = styled.button`
   color: white;
   width: 5rem;
   height: 2.5rem;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 `;
 
 function Button({ name }) {

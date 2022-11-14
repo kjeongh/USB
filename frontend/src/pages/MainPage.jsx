@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
@@ -15,6 +16,29 @@ const MainWrap = styled.div`
   padding: 1rem;
 `;
 
+const ListHeader = styled.div`
+  width: 60rem;
+  align-items: center;
+  display: flex;
+`;
+
+const LinkWrap = styled.div`
+  width: 20rem;
+  height: 3rem;
+  align-items: center;
+  display: flex;
+`;
+
+const LinkBtn = styled.button`
+  width: 7rem;
+  height: 3rem;
+  margin-left: 1rem;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: purple;
+  color: white;
+`;
+
 const BtnWrap = styled.div`
   width: 20rem;
   height: 3rem;
@@ -22,7 +46,7 @@ const BtnWrap = styled.div`
   justify-content: center;
   display: flex;
   margin-left: auto;
-  margin-right: 2.7rem;
+  padding: 1rem;
 `;
 
 const ListWrap = styled.div`
@@ -40,15 +64,15 @@ const ListWrap = styled.div`
     width: 0.5rem;
     height: 1rem;
     border-radius: 0.4rem;
-    background: rgba(158, 197, 124);
+    background: skyblue;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.3);
+    background: blue;
     border-radius: 0.4rem;
   }
 `;
 
-const ListBox = styled.nav`
+const ListBox = styled.div`
   width: 50rem;
   height: 3rem;
   align-items: center;
@@ -57,7 +81,6 @@ const ListBox = styled.nav`
   margin-bottom: 2rem;
   border-radius: 2rem;
   background-color: lightgray;
-  border: 1px solid black;
 `;
 
 function Mainpage() {
@@ -65,11 +88,31 @@ function Mainpage() {
     <div>
       <Header />
       <MainWrap>
-        <BtnWrap>
-          <Btn name={'수정'} />
-          <Btn name={'추가'} />
-          <Btn name={'삭제'} />
-        </BtnWrap>
+        <ListHeader>
+          <LinkWrap>
+            <LinkBtn>
+              <Link
+                to={{ pathname: '/' }}
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+              >
+                Todo
+              </Link>
+            </LinkBtn>
+            <LinkBtn>
+              <Link
+                to={{ pathname: '/RoutinePage' }}
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+              >
+                Routine
+              </Link>
+            </LinkBtn>
+          </LinkWrap>
+          <BtnWrap>
+            <Btn name={'수정'} />
+            <Btn name={'추가'} />
+            <Btn name={'삭제'} />
+          </BtnWrap>
+        </ListHeader>
         <ListWrap>
           <ul>
             <ListBox />
