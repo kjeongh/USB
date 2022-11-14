@@ -1,4 +1,4 @@
-version: '3'
+version: "3.7"
 
 services:
   db:
@@ -47,12 +47,12 @@ services:
       - ./.env
     depends_on:
       - db
-    # command:
+    # command: 
     networks:
       - app-tier
     # 명령어 실행 끝나도 안꺼짐
     tty: true
-
+  
 networks:
   app-tier:
     external: true
