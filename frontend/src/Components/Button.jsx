@@ -8,7 +8,7 @@ export const Btn = styled.button`
   border-radius: 2rem;
   background-color: purple;
   color: white;
-  width: 5rem;
+  width: 10rem;
   height: 2.5rem;
   margin-left: 1rem;
 `;

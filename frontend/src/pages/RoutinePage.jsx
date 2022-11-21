@@ -120,8 +120,12 @@ function Mainpage() {
             </RoutineBtn>
           </LinkWrap>
           <BtnWrap>
-            <Btn name={'추가'} />
-            <Btn name={'삭제'} />
+            <Link
+              to={{ pathname: '/Routine' }}
+              style={{ color: 'inherit', textDecoration: 'inherit' }}
+            >
+              <Btn name={'루틴 작성'} />
+            </Link>
           </BtnWrap>
         </ListHeader>
         <ListWrap>
