@@ -25,11 +25,12 @@ const ListHeader = styled.div`
 const LinkWrap = styled.div`
   width: 20rem;
   height: 3rem;
+  padding-top: 2rem;
   align-items: center;
   display: flex;
 `;
 
-const LinkBtn = styled.button`
+const TodoBtn = styled.button`
   width: 7rem;
   height: 3rem;
   margin-left: 1rem;
@@ -37,6 +38,17 @@ const LinkBtn = styled.button`
   font-weight: bold;
   background-color: purple;
   color: white;
+  border: none;
+`;
+
+const RoutineBtn = styled.button`
+  width: 7rem;
+  height: 3rem;
+  margin-left: 1rem;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: lightyellow;
+  border: none;
 `;
 
 const BtnWrap = styled.div`
@@ -46,7 +58,6 @@ const BtnWrap = styled.div`
   justify-content: center;
   display: flex;
   margin-left: auto;
-  padding: 1rem;
 `;
 
 const ListWrap = styled.div`
@@ -75,6 +86,7 @@ const ListWrap = styled.div`
 const ListBox = styled.div`
   width: 50rem;
   height: 3rem;
+  margin-right: 1.8rem;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -90,25 +102,24 @@ function Mainpage() {
       <MainWrap>
         <ListHeader>
           <LinkWrap>
-            <LinkBtn>
+            <TodoBtn>
               <Link
                 to={{ pathname: '/' }}
                 style={{ color: 'inherit', textDecoration: 'inherit' }}
               >
                 Todo
               </Link>
-            </LinkBtn>
-            <LinkBtn>
+            </TodoBtn>
+            <RoutineBtn>
               <Link
                 to={{ pathname: '/RoutinePage' }}
                 style={{ color: 'inherit', textDecoration: 'inherit' }}
               >
                 Routine
               </Link>
-            </LinkBtn>
+            </RoutineBtn>
           </LinkWrap>
           <BtnWrap>
-            <Btn name={'수정'} />
             <Btn name={'추가'} />
             <Btn name={'삭제'} />
           </BtnWrap>
