@@ -37,8 +37,8 @@ class Routine(Base):
     __tablename__ = "routine"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    day = Column(String[20])
-    todo_id = Column(Integer, ForeignKey("question.id"))
+    day = Column(String(20))
+    todo_id = Column(Integer, ForeignKey("todo.id"))
 
     # def __init__(self, routine: schemas.RoutineCreate):
     #     self.day = routine.day

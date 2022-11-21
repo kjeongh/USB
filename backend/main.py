@@ -17,8 +17,6 @@ app = FastAPI()
 load_dotenv()
 
 app.include_router(users.router)
-app.include_router(questions.router)
-app.include_router(comments.router)
 
 
 app.add_middleware(
