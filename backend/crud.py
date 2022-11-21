@@ -9,3 +9,42 @@ from datetime import datetime
 from enum import Enum, auto
 
 import models, schemas
+
+def get_user(db: Session, user_id: int):
+    return db.query(models.User).get(user_id);
+
+def create_user(db: Session, user: schemas.UserCreate) -> models.User | None:
+    try:
+        db_user = models.User(user)
+        db.add(db_user)
+        db.commit()
+        db.refresh(db_user)
+        return db_user
+    except Exception as ex:
+        print(ex)
+        return ex
+
+def update_user(db: Session, user: schemas.User):
+    db_user = db.query(models.User).get(user.id)
+    if db_user == None:
+        return -1  # 'insta_id_not_found'
+    db_user.nickname = user.nickname
+    db_user.email = user.email
+
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+def delete_user(db: Session, user_id: int):
+    db_user = db.query(models.User).filter_by(id=user_id).first()
+    if db_user == None:
+        raise HTTPException(status_code=404, detail="user is not found")
+    if db_user.is_deleted:
+        raise HTTPException(status_code=405, detail="user is already deleted")
+
+    db.delete(db_user)
+    db.commit()
+
+    return {}
+

@@ -3,9 +3,11 @@
 from dotenv import load_dotenv
 from starlette.responses import RedirectResponse
 
+from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from database import engine
-from routers import users, comments, questions
+from routers import users
+import models
 
 models.Base.metadata.create_all(bind=engine)
 
