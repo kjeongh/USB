@@ -18,7 +18,7 @@ def create_todo(todo: schemas.TodoCreate, db: Session = Depends(get_db)):
 
 
 # user_id를 path variable로 받아서 해당 user의 todo를 반환한다.
-@router.get('/{todo_id}', response_model=schemas.Todo)
+@router.get('/{user_id}', response_model=schemas.Todo)
 def show_todo(user_id: int, db: Session = Depends(get_db)):
     return crud.get_todo(db, user_id=user_id)
 

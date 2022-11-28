@@ -26,13 +26,15 @@ class Todo(Base):
     user_id = Column(Integer, ForeignKey("user.id"))
     task = Column(String(30))
     status = Column(String(20))
+    
+    todo_routine = relationship("Routine")
 
     def __init__(self, todo: schemas.TodoCreate):
         self.user_id = todo.user_id
         self.status = todo.status
         self.task = todo.task
 
-    todo_routine = relationship("Routine")
+
 
 class Routine(Base):
     __tablename__ = "routine"
