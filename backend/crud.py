@@ -48,3 +48,29 @@ def delete_user(db: Session, user_id: int):
 
     return {}
 
+
+def get_todo(db: Session, user_id: int):
+    return db.query(models.Todo).filter_by(user_id=user_id)
+
+def create_todo(db: Session, todo: schemas.TodoCreate) -> models.Todo | None:
+    try:
+        db_todo = models.Todo(todo)
+        db.add(db_todo)
+        db.commit()
+        db.refresh(db_todo)
+        return db_todo
+    except Exception as ex:
+        print(ex)
+        return ex
+
+def update_todo(db: Session, todo: schemas.Todo):
+    db_todo = db.query(models.Todo).get(todo.id)
+    if db_todo == None:
+        return -1  # 'insta_id_not_found'
+    db_todo.task = todo.task
+    db_todo.status = todo.status
+
+    db.add(db_todo)
+    db.commit()
+    db.refresh(db_todo)
+    return db_todo

@@ -10,12 +10,13 @@ class User(UserCreate):
     class Config:
         orm_mode = True
 
-class Todo(BaseModel):
-    id: int
+class TodoCreate(BaseModel):
     user_id: int
     task: str
     status: str
 
+class Todo(TodoCreate):
+    id: int
     class Config:
         orm_mode = True
 
