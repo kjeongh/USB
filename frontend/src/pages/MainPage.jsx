@@ -76,10 +76,10 @@ const ListWrap = styled.div`
     width: 0.5rem;
     height: 1rem;
     border-radius: 0.4rem;
-    background: skyblue;
+    background: lightgreen;
   }
   &::-webkit-scrollbar-thumb {
-    background: blue;
+    background: green;
     border-radius: 0.4rem;
   }
 `;

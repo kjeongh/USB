@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
 
@@ -59,7 +60,7 @@ const TaskTitle = styled.div`
   font-weight: bold;
 `;
 
-const SectionTtitle = styled.div`
+const StatusTitle = styled.div`
   width: 10rem;
   height: 3rem;
   margin-bottom: 1rem;
@@ -119,9 +120,9 @@ const Routine = styled.input`
   border: 1px solid black;
 `;
 
-const SectionSelect = styled.select`
-  width: 35rem;
-  height: 3rem;
+const StatusSelect = styled.select`
+  width: 35.3rem;
+  height: 3.2rem;
   margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
@@ -132,34 +133,61 @@ const SectionSelect = styled.select`
   border: 1px solid black;
 `;
 
-const SectionOption = styled.option`
+const StatusOption = styled.option`
   font-size: 15pt;
   font-weight: bold;
   text-align: center;
 `;
 
 function Todo() {
+  const [Tasks, setTasks] = useState(null);
+  const [Status, setStatus] = useState(null);
+
+  const onTasks = async () => {
+    const Tasks = new Tasks();
+    await axios({
+      method: 'post',
+      url: '',
+      data: Tasks,
+      headers: {
+        'Contenet-Type': 'application/json',
+      },
+    });
+  };
+
+  const onStatus = async () => {
+    const Status = new Status();
+    await axios({
+      method: 'post',
+      url: '',
+      data: Status,
+      headers: {
+        'Contenet-Type': 'application/json',
+      },
+    });
+  };
+
   return (
     <div>
       <Header />
       <MainWrap>
         <BtnWrap>
-          <Btn name={'작성'} />
+          <Btn name={'작성'} onChange={{ onTasks, onStatus }} />
           <Btn name={'취소'} />
         </BtnWrap>
         <TodoWrap>
           <TitleWrap>
             <TaskTitle>task</TaskTitle>
-            <SectionTtitle>section</SectionTtitle>
+            <StatusTitle>status</StatusTitle>
             <RoutineTitle>routine</RoutineTitle>
           </TitleWrap>
           <FormWrap>
             <Task />
-            <SectionSelect>
-              <SectionOption>Todo</SectionOption>
-              <SectionOption>Doing</SectionOption>
-              <SectionOption>Done</SectionOption>
-            </SectionSelect>
+            <StatusSelect>
+              <StatusOption>Todo</StatusOption>
+              <StatusOption>Doing</StatusOption>
+              <StatusOption>Done</StatusOption>
+            </StatusSelect>
             <Routine />
           </FormWrap>
         </TodoWrap>
