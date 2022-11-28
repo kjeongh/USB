@@ -36,7 +36,7 @@ const TodoBtn = styled.button`
   margin-left: 1rem;
   font-size: 15pt;
   font-weight: bold;
-  background-color: purple;
+  background-color: green;
   color: white;
   border: none;
 `;

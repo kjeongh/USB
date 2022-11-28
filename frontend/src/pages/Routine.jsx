@@ -47,18 +47,7 @@ const TitleWrap = styled.div`
   flex-direction: column;
 `;
 
-const StartTitle = styled.div`
-  width: 10rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: 15pt;
-  font-weight: bold;
-`;
-
-const EndTitle = styled.div`
+const DayTitle = styled.div`
   width: 10rem;
   height: 3rem;
   margin-bottom: 1rem;
@@ -80,30 +69,24 @@ const FormWrap = styled.div`
   flex-direction: column;
 `;
 
-const Start = styled.form`
+const Day = styled.select`
   width: 35rem;
   height: 3rem;
   margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
   display: flex;
+  text-align: center;
   font-size: 15pt;
   font-weight: bold;
   background-color: white;
   border: 1px solid black;
 `;
 
-const End = styled.form`
-  width: 35rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+const DayOption = styled.option`
   font-size: 15pt;
   font-weight: bold;
-  background-color: white;
-  border: 1px solid black;
+  text-align: center;
 `;
 
 function Routine() {
@@ -118,12 +101,18 @@ function Routine() {
           </BtnWrap>
           <TodoWrap>
             <TitleWrap>
-              <StartTitle>start</StartTitle>
-              <EndTitle>end</EndTitle>
+              <DayTitle>start</DayTitle>
             </TitleWrap>
             <FormWrap>
-              <Start>start</Start>
-              <End>end</End>
+              <Day>
+                <DayOption>Mon</DayOption>
+                <DayOption>Tue</DayOption>
+                <DayOption>Wed</DayOption>
+                <DayOption>Thu</DayOption>
+                <DayOption>Fri</DayOption>
+                <DayOption>Sat</DayOption>
+                <DayOption>Sun</DayOption>
+              </Day>
             </FormWrap>
           </TodoWrap>
         </MainWrap>

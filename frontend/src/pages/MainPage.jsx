@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
+import ListBox from '../Components/List';
 
 const MainWrap = styled.div`
   width: 65rem;
@@ -46,7 +47,7 @@ const RoutineBtn = styled.button`
   margin-left: 1rem;
   font-size: 15pt;
   font-weight: bold;
-  background-color: purple;
+  background-color: green;
   color: white;
   border: none;
 `;
@@ -81,18 +82,6 @@ const ListWrap = styled.div`
     background: blue;
     border-radius: 0.4rem;
   }
-`;
-
-const ListBox = styled.div`
-  width: 50rem;
-  height: 3rem;
-  margin-right: 1.8rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-bottom: 2rem;
-  border-radius: 2rem;
-  background-color: lightgray;
 `;
 
 function Mainpage() {

@@ -40,6 +40,7 @@ const TitleWrap = styled.div`
   width: 15rem;
   height: 30rem;
   margin: auto;
+  padding-bottom: 1.5rem;
   margin-left: 7rem;
   align-items: center;
   justify-content: center;
@@ -90,7 +91,35 @@ const FormWrap = styled.div`
   flex-direction: column;
 `;
 
-const Task = styled.form`
+const Task = styled.input`
+  width: 35rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const Routine = styled.input`
+  width: 35rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const SectionSelect = styled.select`
   width: 35rem;
   height: 3rem;
   margin-bottom: 1rem;
@@ -103,30 +132,10 @@ const Task = styled.form`
   border: 1px solid black;
 `;
 
-const Section = styled.form`
-  width: 35rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+const SectionOption = styled.option`
   font-size: 15pt;
   font-weight: bold;
-  background-color: white;
-  border: 1px solid black;
-`;
-
-const Routine = styled.form`
-  width: 35rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: 15pt;
-  font-weight: bold;
-  background-color: white;
-  border: 1px solid black;
+  text-align: center;
 `;
 
 function Todo() {
@@ -145,9 +154,13 @@ function Todo() {
             <RoutineTitle>routine</RoutineTitle>
           </TitleWrap>
           <FormWrap>
-            <Task>task</Task>
-            <Section>section</Section>
-            <Routine>routine</Routine>
+            <Task />
+            <SectionSelect>
+              <SectionOption>Todo</SectionOption>
+              <SectionOption>Doing</SectionOption>
+              <SectionOption>Done</SectionOption>
+            </SectionSelect>
+            <Routine />
           </FormWrap>
         </TodoWrap>
       </MainWrap>
