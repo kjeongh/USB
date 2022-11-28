@@ -50,7 +50,7 @@ def delete_user(db: Session, user_id: int):
 
 
 def get_todo(db: Session, user_id: int):
-    return db.query(models.Todo).filter_by(user_id=user_id)
+    return db.query(models.Todo).filter(models.Todo.user_id==user_id).all()
 
 def create_todo(db: Session, todo: schemas.TodoCreate) -> models.Todo | None:
     try:
