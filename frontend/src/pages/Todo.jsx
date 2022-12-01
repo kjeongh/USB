@@ -140,8 +140,19 @@ const StatusOption = styled.option`
 `;
 
 function Todo() {
+  const [Content, setContent] = useState();
   const [Tasks, setTasks] = useState(null);
   const [Status, setStatus] = useState(null);
+
+  const onChangeHandler = (e) => {
+    setContent(e.currentTarget.value);
+  };
+
+  const StatusOptions = [
+    { key: 1, value: 'Todo' },
+    { key: 2, value: 'Doing' },
+    { key: 3, value: 'Done' },
+  ];
 
   const onTasks = async () => {
     const Tasks = new Tasks();
@@ -183,10 +194,12 @@ function Todo() {
           </TitleWrap>
           <FormWrap>
             <Task />
-            <StatusSelect>
-              <StatusOption>Todo</StatusOption>
-              <StatusOption>Doing</StatusOption>
-              <StatusOption>Done</StatusOption>
+            <StatusSelect onChange={onChangeHandler} value={Content}>
+              {StatusOptions.map((item, index) => (
+                <StatusOption key={item.key} value={item.key}>
+                  {item.value}
+                </StatusOption>
+              ))}
             </StatusSelect>
             <Routine />
           </FormWrap>

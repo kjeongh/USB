@@ -92,21 +92,22 @@ function Mainpage() {
         <ListHeader>
           <LinkWrap>
             <TodoBtn>
-              <Link
+              {/* <Link
                 to={{ pathname: '/' }}
                 style={{ color: 'inherit', textDecoration: 'inherit' }}
               >
                 Todo
-              </Link>
+              </Link> */}
+              Todo
             </TodoBtn>
-            <RoutineBtn>
+            {/* <RoutineBtn>
               <Link
                 to={{ pathname: '/RoutinePage' }}
                 style={{ color: 'inherit', textDecoration: 'inherit' }}
               >
                 Routine
               </Link>
-            </RoutineBtn>
+            </RoutineBtn> */}
           </LinkWrap>
           <BtnWrap>
             <Link
