@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -56,9 +56,9 @@ const Option = styled.option`
   text-align: center;
 `;
 
-const url = 'http://localhost:8000/api/v1';
+const url = 'http://localhost:8000/api/v1/';
 
-function List() {
+const GetList = () => {
   const [Content, setContent] = useState();
 
   const onChangeHandler = (e) => {
@@ -74,6 +74,20 @@ function List() {
     { key: 9, value: 'Sat' },
     { key: 10, value: 'Sun' },
   ];
+
+  const getData = async () => {
+    try {
+      const response = await axios(url);
+      const data = response.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
       <ListBox>
@@ -89,6 +103,6 @@ function List() {
       </ListBox>
     </div>
   );
-}
+};
 
-export default List;
+export default GetList;

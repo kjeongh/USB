@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
 import ListBox from '../Components/List';
+import Todo from './Main';
 
 const MainWrap = styled.div`
   width: 65rem;
@@ -174,7 +175,6 @@ const BtnWrap = styled.div`
 
 function Mainpage() {
   const [contents, setContents] = useState([0]);
-  const [task, setTask] = useState('');
 
   const StatusOptions = [
     { key: 1, value: 'Todo' },
@@ -182,35 +182,8 @@ function Mainpage() {
     { key: 3, value: 'Done' },
   ];
 
-  const taskHandler = (e) => {
-    e.preventDefault();
-    setTask(e.target.task.value);
-    console.log(task);
-  };
-
   const onChangeTodo = (e) => {
     setContents(e.currentTarget.value);
-  };
-
-  const postData = async (e) => {
-    e.preventDefault();
-    axios
-      .post('http://localhost:8000/api/v1', {
-        user_id: '1',
-        task: task,
-        status: contents,
-      })
-      .then((res) => console.log('posting data', res))
-      .catch((err) => console.log(err));
-  };
-
-  const getData = () => {
-    const [getTodo, setGetTodo] = useState([]);
-    useEffect(() => {
-      axios.get('http://localhost:8000').then((response) => {
-        setGetTodo(response.data);
-      });
-    }, []);
   };
 
   return (
@@ -218,7 +191,7 @@ function Mainpage() {
       <Header />
       <MainWrap>
         <form>
-          <ListHeader>
+          {/* <ListHeader>
             <LinkWrap>
               <MakeTodo value={task} onChange={taskHandler}>
                 MakeTodo
@@ -248,7 +221,7 @@ function Mainpage() {
                 ))}
               </Select>
             </FormWrap>
-          </TodoWrap>
+          </TodoWrap> */}
           <ListHeader>
             <LinkWrap>
               <TodoBtn>Todo</TodoBtn>
