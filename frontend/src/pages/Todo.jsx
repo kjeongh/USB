@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../Components/Header';
@@ -71,16 +72,6 @@ const StatusTitle = styled.div`
   font-weight: bold;
 `;
 
-const RoutineTitle = styled.div`
-  width: 10rem;
-  height: 3rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: 15pt;
-  font-weight: bold;
-`;
-
 const FormWrap = styled.div`
   width: 40rem;
   height: 30rem;
@@ -106,21 +97,7 @@ const Task = styled.input`
   border: 1px solid black;
 `;
 
-const Routine = styled.input`
-  width: 35rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  text-align: center;
-  font-size: 15pt;
-  font-weight: bold;
-  background-color: white;
-  border: 1px solid black;
-`;
-
-const StatusSelect = styled.select`
+const Select = styled.select`
   width: 35.3rem;
   height: 3.2rem;
   margin-bottom: 1rem;
@@ -133,7 +110,7 @@ const StatusSelect = styled.select`
   border: 1px solid black;
 `;
 
-const StatusOption = styled.option`
+const Option = styled.option`
   font-size: 15pt;
   font-weight: bold;
   text-align: center;
@@ -183,25 +160,28 @@ function Todo() {
       <Header />
       <MainWrap>
         <BtnWrap>
-          <Btn name={'작성'} onChange={{ onTasks, onStatus }} />
+          <Link
+            to={{ pathname: '/' }}
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          >
+            <Btn name={'작성'} onChange={{ onTasks, onStatus }} />
+          </Link>
           <Btn name={'취소'} />
         </BtnWrap>
         <TodoWrap>
           <TitleWrap>
             <TaskTitle>task</TaskTitle>
             <StatusTitle>status</StatusTitle>
-            <RoutineTitle>routine</RoutineTitle>
           </TitleWrap>
           <FormWrap>
             <Task />
-            <StatusSelect onChange={onChangeHandler} value={Content}>
+            <Select onChange={onChangeHandler} value={Content}>
               {StatusOptions.map((item, index) => (
-                <StatusOption key={item.key} value={item.key}>
+                <Option key={item.key} value={item.key}>
                   {item.value}
-                </StatusOption>
+                </Option>
               ))}
-            </StatusSelect>
-            <Routine />
+            </Select>
           </FormWrap>
         </TodoWrap>
       </MainWrap>
