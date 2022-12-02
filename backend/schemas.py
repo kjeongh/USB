@@ -1,22 +1,22 @@
 from pydantic import BaseModel
 
 
-
-
-class User(BaseModel):
-    id: int  # 자동 생성
+class UserCreate(BaseModel):
     nickname: str  # 기본값 false
     email: str
 
+class User(UserCreate):
+    id: int  # 자동 생성
     class Config:
         orm_mode = True
 
-class Todo(BaseModel):
-    id: int
+class TodoCreate(BaseModel):
     user_id: int
     task: str
     status: str
 
+class Todo(TodoCreate):
+    id: int
     class Config:
         orm_mode = True
 

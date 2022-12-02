@@ -1,5 +1,3 @@
-
-
 # database.py
 # database 연결과 관련된 파일
 
