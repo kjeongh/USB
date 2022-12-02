@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
 
@@ -59,20 +61,10 @@ const TaskTitle = styled.div`
   font-weight: bold;
 `;
 
-const SectionTtitle = styled.div`
+const StatusTitle = styled.div`
   width: 10rem;
   height: 3rem;
   margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: 15pt;
-  font-weight: bold;
-`;
-
-const RoutineTitle = styled.div`
-  width: 10rem;
-  height: 3rem;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -105,23 +97,9 @@ const Task = styled.input`
   border: 1px solid black;
 `;
 
-const Routine = styled.input`
-  width: 35rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  text-align: center;
-  font-size: 15pt;
-  font-weight: bold;
-  background-color: white;
-  border: 1px solid black;
-`;
-
-const SectionSelect = styled.select`
-  width: 35rem;
-  height: 3rem;
+const Select = styled.select`
+  width: 35.3rem;
+  height: 3.2rem;
   margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
@@ -132,35 +110,78 @@ const SectionSelect = styled.select`
   border: 1px solid black;
 `;
 
-const SectionOption = styled.option`
+const Option = styled.option`
   font-size: 15pt;
   font-weight: bold;
   text-align: center;
 `;
 
 function Todo() {
+  const [Content, setContent] = useState();
+  const [Tasks, setTasks] = useState(null);
+  const [Status, setStatus] = useState(null);
+
+  const onChangeHandler = (e) => {
+    setContent(e.currentTarget.value);
+  };
+
+  const StatusOptions = [
+    { key: 1, value: 'Todo' },
+    { key: 2, value: 'Doing' },
+    { key: 3, value: 'Done' },
+  ];
+
+  const onTasks = async () => {
+    const Tasks = new Tasks();
+    await axios({
+      method: 'post',
+      url: '',
+      data: Tasks,
+      headers: {
+        'Contenet-Type': 'application/json',
+      },
+    });
+  };
+
+  const onStatus = async () => {
+    const Status = new Status();
+    await axios({
+      method: 'post',
+      url: '',
+      data: Status,
+      headers: {
+        'Contenet-Type': 'application/json',
+      },
+    });
+  };
+
   return (
     <div>
       <Header />
       <MainWrap>
         <BtnWrap>
-          <Btn name={'작성'} />
+          <Link
+            to={{ pathname: '/' }}
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          >
+            <Btn name={'작성'} onChange={{ onTasks, onStatus }} />
+          </Link>
           <Btn name={'취소'} />
         </BtnWrap>
         <TodoWrap>
           <TitleWrap>
             <TaskTitle>task</TaskTitle>
-            <SectionTtitle>section</SectionTtitle>
-            <RoutineTitle>routine</RoutineTitle>
+            <StatusTitle>status</StatusTitle>
           </TitleWrap>
           <FormWrap>
             <Task />
-            <SectionSelect>
-              <SectionOption>Todo</SectionOption>
-              <SectionOption>Doing</SectionOption>
-              <SectionOption>Done</SectionOption>
-            </SectionSelect>
-            <Routine />
+            <Select onChange={onChangeHandler} value={Content}>
+              {StatusOptions.map((item, index) => (
+                <Option key={item.key} value={item.key}>
+                  {item.value}
+                </Option>
+              ))}
+            </Select>
           </FormWrap>
         </TodoWrap>
       </MainWrap>

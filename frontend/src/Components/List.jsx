@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const ListBox = styled.div`
   width: 50rem;
@@ -13,10 +14,77 @@ const ListBox = styled.div`
   background-color: lightgray;
 `;
 
+const TodoTitle = styled.div`
+  width: 20rem;
+  height: 2rem;
+  font-size: 15pt;
+  margin-right: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const Status = styled.div`
+  width: 10rem;
+  height: 2rem;
+  font-size: 15pt;
+  margin-right: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const Select = styled.select`
+  width: 10rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const Option = styled.option`
+  font-size: 10pt;
+  font-weight: bold;
+  text-align: center;
+`;
+
 function List() {
+  const [Content, setContent] = useState();
+
+  const onChangeHandler = (e) => {
+    setContent(e.currentTarget.value);
+  };
+
+  const RoutineOptions = [
+    { key: 4, value: 'Mon' },
+    { key: 5, value: 'Tue' },
+    { key: 6, value: 'Wed' },
+    { key: 7, value: 'Thu' },
+    { key: 8, value: 'Fri' },
+    { key: 9, value: 'Sat' },
+    { key: 10, value: 'Sun' },
+  ];
   return (
     <div>
-      <ListBox />
+      <ListBox>
+        <TodoTitle />
+        <Status />
+        <Select onChange={onChangeHandler} value={Content}>
+          {RoutineOptions.map((item, index) => (
+            <Option key={item.key} value={item.key}>
+              {item.value}
+            </Option>
+          ))}
+        </Select>
+      </ListBox>
     </div>
   );
 }

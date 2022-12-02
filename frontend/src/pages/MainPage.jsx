@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
 import ListBox from '../Components/List';
@@ -15,6 +16,25 @@ const MainWrap = styled.div`
   margin: auto;
   margin-top: 2rem;
   padding: 1rem;
+`;
+
+const MakeTodo = styled.button`
+  width: 7rem;
+  height: 3rem;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: lightyellow;
+  border: none;
+`;
+
+const TodoWrap = styled.div`
+  width: 60rem;
+  height: 10rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  background-color: lightyellow;
 `;
 
 const ListHeader = styled.div`
@@ -34,31 +54,10 @@ const LinkWrap = styled.div`
 const TodoBtn = styled.button`
   width: 7rem;
   height: 3rem;
-  margin-left: 1rem;
   font-size: 15pt;
   font-weight: bold;
   background-color: lightyellow;
   border: none;
-`;
-
-const RoutineBtn = styled.button`
-  width: 7rem;
-  height: 3rem;
-  margin-left: 1rem;
-  font-size: 15pt;
-  font-weight: bold;
-  background-color: green;
-  color: white;
-  border: none;
-`;
-
-const BtnWrap = styled.div`
-  width: 20rem;
-  height: 3rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin-left: auto;
 `;
 
 const ListWrap = styled.div`
@@ -76,64 +75,183 @@ const ListWrap = styled.div`
     width: 0.5rem;
     height: 1rem;
     border-radius: 0.4rem;
-    background: skyblue;
+    background: lightgreen;
   }
   &::-webkit-scrollbar-thumb {
-    background: blue;
+    background: green;
     border-radius: 0.4rem;
   }
 `;
 
+const TitleWrap = styled.div`
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
+  padding-bottom: 1.5rem;
+  margin-left: 7rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+const TaskTitle = styled.div`
+  width: 10rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 15pt;
+  font-weight: bold;
+`;
+
+const Task = styled.input`
+  width: 35rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const StatusTitle = styled.div`
+  width: 10rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 15pt;
+  font-weight: bold;
+`;
+
+const FormWrap = styled.div`
+  width: 35rem;
+  height: 10rem;
+  margin: auto;
+  margin-right: 7rem;
+  margin-top: 0.2rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Select = styled.select`
+  width: 35.3rem;
+  height: 3.2rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const Option = styled.option`
+  font-size: 15pt;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const BtnWrap = styled.div`
+  width: 20rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: 2rem;
+`;
+
 function Mainpage() {
+  const [contents, setContents] = useState([0]);
+  const [task, setTask] = useState('');
+
+  const StatusOptions = [
+    { key: 1, value: 'Todo' },
+    { key: 2, value: 'Doing' },
+    { key: 3, value: 'Done' },
+  ];
+
+  const taskHandler = (e) => {
+    e.preventDefault();
+    setTask(e.target.task.value);
+    console.log(task);
+  };
+
+  const onChangeTodo = (e) => {
+    setContents(e.currentTarget.value);
+  };
+
+  const postData = async (e) => {
+    try {
+      const response = await axios.post('http://localhost:8000', {
+        user_id: '1',
+        task: task,
+        status: contents,
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getData = () => {
+    const [getTodo, setGetTodo] = useState([]);
+    useEffect(() => {
+      axios.get('http://localhost:8000').then((response) => {
+        setGetTodo(response.data);
+      });
+    }, []);
+  };
+
   return (
     <div>
       <Header />
       <MainWrap>
         <ListHeader>
           <LinkWrap>
-            <TodoBtn>
-              <Link
-                to={{ pathname: '/' }}
-                style={{ color: 'inherit', textDecoration: 'inherit' }}
-              >
-                Todo
-              </Link>
-            </TodoBtn>
-            <RoutineBtn>
-              <Link
-                to={{ pathname: '/RoutinePage' }}
-                style={{ color: 'inherit', textDecoration: 'inherit' }}
-              >
-                Routine
-              </Link>
-            </RoutineBtn>
+            <MakeTodo value={task} onChange={taskHandler}>
+              MakeTodo
+            </MakeTodo>
           </LinkWrap>
           <BtnWrap>
-            <Link
-              to={{ pathname: '/Todo' }}
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
-            >
-              <Btn name={'투두리스트 작성'} />
-            </Link>
+            <Btn name={'Todo 작성'} onClick={postData} />
+            <Btn name={'취소'} />
           </BtnWrap>
+        </ListHeader>
+        <TodoWrap>
+          <TitleWrap>
+            <TaskTitle>task</TaskTitle>
+            <StatusTitle>status</StatusTitle>
+          </TitleWrap>
+          <FormWrap>
+            <Task />
+            <Select onChange={onChangeTodo} value={contents}>
+              {StatusOptions.map((item, index) => (
+                <Option key={item.key} value={item.key}>
+                  {item.value}
+                </Option>
+              ))}
+            </Select>
+          </FormWrap>
+        </TodoWrap>
+        <ListHeader>
+          <LinkWrap>
+            <TodoBtn>Todo</TodoBtn>
+          </LinkWrap>
         </ListHeader>
         <ListWrap>
           <ul>
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
             <ListBox />
           </ul>
         </ListWrap>

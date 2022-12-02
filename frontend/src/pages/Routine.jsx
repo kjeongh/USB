@@ -58,7 +58,7 @@ const DayTitle = styled.div`
   font-weight: bold;
 `;
 
-const FormWrap = styled.div`
+const DayWrap = styled.div`
   width: 40rem;
   height: 30rem;
   margin: auto;
@@ -70,8 +70,8 @@ const FormWrap = styled.div`
 `;
 
 const Day = styled.select`
-  width: 35rem;
-  height: 3rem;
+  width: 35.3rem;
+  height: 3.2rem;
   margin-bottom: 1rem;
   align-items: center;
   justify-content: center;
@@ -103,7 +103,7 @@ function Routine() {
             <TitleWrap>
               <DayTitle>start</DayTitle>
             </TitleWrap>
-            <FormWrap>
+            <DayWrap>
               <Day>
                 <DayOption>Mon</DayOption>
                 <DayOption>Tue</DayOption>
@@ -113,7 +113,7 @@ function Routine() {
                 <DayOption>Sat</DayOption>
                 <DayOption>Sun</DayOption>
               </Day>
-            </FormWrap>
+            </DayWrap>
           </TodoWrap>
         </MainWrap>
       </div>
