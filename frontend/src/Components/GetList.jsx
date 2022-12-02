@@ -56,7 +56,7 @@ const Option = styled.option`
   text-align: center;
 `;
 
-const url = 'http://localhost:8000/api/v1/';
+const url = 'http://localhost:8000/api/v1/todos';
 
 const GetList = () => {
   const [Content, setContent] = useState();

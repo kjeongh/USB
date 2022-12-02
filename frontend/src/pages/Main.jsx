@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../Components/Header';
@@ -69,7 +68,7 @@ const ListWrap = styled.div`
   }
 `;
 
-const url = 'http://localhost:8000/api/v1/';
+const url = 'http://localhost:8000/api/v1/todos';
 
 const Main = () => {
   const [task, setTask] = useState('');
@@ -110,12 +109,7 @@ const Main = () => {
             onChange={(e) => setStatus(e.target.value)}
           />
         </TaskWrap>
-        <Btn name='투두 작성' onClick={handleSubmit}>
-          <Link
-            to={{ pathname: '/List' }}
-            style={{ color: 'inherit', textDecoration: 'inherit' }}
-          />
-        </Btn>
+        <Btn name='투두 작성' onClick={handleSubmit} />
       </TodoForm>
       <ListWrap>
         <ListBox />
