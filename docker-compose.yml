@@ -28,12 +28,32 @@ services:
     # restart: always 배포때만
     env_file:
       - ./.env
+    depends_on:
+      - db
     # command: 
     networks:
       - app-tier
     # 명령어 실행 끝나도 안꺼짐
     tty: true
   
+  db:
+    image: mysql
+    platform: linux/amd64
+    container_name: mysql-con
+    env_file:
+      - ./.env
+    ports:
+      - 3307:3306
+    expose:
+      - 3306
+    volumes:
+      - data_mysql:/mysql
+    networks:
+      - app-tier
+    # 명령어 실행 끝나도 안꺼짐
+    tty: true
+
+
   nginx:
     image: nginx:1.21.5-alpine
     build: ./nginx
