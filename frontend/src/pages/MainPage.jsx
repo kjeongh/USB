@@ -193,16 +193,15 @@ function Mainpage() {
   };
 
   const postData = async (e) => {
-    try {
-      const response = await axios.post('http://localhost:8000', {
+    e.preventDefault();
+    axios
+      .post('http://localhost:8000/api/v1', {
         user_id: '1',
         task: task,
         status: contents,
-      });
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .then((res) => console.log('posting data', res))
+      .catch((err) => console.log(err));
   };
 
   const getData = () => {
@@ -218,38 +217,44 @@ function Mainpage() {
     <div>
       <Header />
       <MainWrap>
-        <ListHeader>
-          <LinkWrap>
-            <MakeTodo value={task} onChange={taskHandler}>
-              MakeTodo
-            </MakeTodo>
-          </LinkWrap>
-          <BtnWrap>
-            <Btn name={'Todo 작성'} onClick={postData} />
-            <Btn name={'취소'} />
-          </BtnWrap>
-        </ListHeader>
-        <TodoWrap>
-          <TitleWrap>
-            <TaskTitle>task</TaskTitle>
-            <StatusTitle>status</StatusTitle>
-          </TitleWrap>
-          <FormWrap>
-            <Task />
-            <Select onChange={onChangeTodo} value={contents}>
-              {StatusOptions.map((item, index) => (
-                <Option key={item.key} value={item.key}>
-                  {item.value}
-                </Option>
-              ))}
-            </Select>
-          </FormWrap>
-        </TodoWrap>
-        <ListHeader>
-          <LinkWrap>
-            <TodoBtn>Todo</TodoBtn>
-          </LinkWrap>
-        </ListHeader>
+        <form>
+          <ListHeader>
+            <LinkWrap>
+              <MakeTodo value={task} onChange={taskHandler}>
+                MakeTodo
+              </MakeTodo>
+            </LinkWrap>
+            <BtnWrap>
+              <Btn name={'Todo 작성'} onClick={postData} />
+              <Btn name={'취소'} />
+            </BtnWrap>
+          </ListHeader>
+          <TodoWrap>
+            <TitleWrap>
+              <TaskTitle>task</TaskTitle>
+              <StatusTitle>status</StatusTitle>
+            </TitleWrap>
+            <FormWrap>
+              <Task
+                type='text'
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
+              />
+              <Select onChange={onChangeTodo} value={contents}>
+                {StatusOptions.map((item, index) => (
+                  <Option key={item.key} value={item.key}>
+                    {item.value}
+                  </Option>
+                ))}
+              </Select>
+            </FormWrap>
+          </TodoWrap>
+          <ListHeader>
+            <LinkWrap>
+              <TodoBtn>Todo</TodoBtn>
+            </LinkWrap>
+          </ListHeader>
+        </form>
         <ListWrap>
           <ul>
             <ListBox />
