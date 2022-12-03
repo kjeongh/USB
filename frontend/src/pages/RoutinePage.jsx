@@ -36,7 +36,7 @@ const TodoBtn = styled.button`
   margin-left: 1rem;
   font-size: 15pt;
   font-weight: bold;
-  background-color: green;
+  background-color: lightgreen;
   color: white;
   border: none;
 `;
@@ -92,7 +92,32 @@ const ListBox = styled.div`
   display: flex;
   margin-bottom: 2rem;
   border-radius: 2rem;
-  background-color: lightgray;
+  background-color: lightgreen;
+`;
+
+const Task = styled.div`
+  width: 15rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  font-size: 15pt;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+const LabelWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Label = styled.label`
+  font-size: 15pt;
+  font-weight: bold;
+  margin-right: 0.5rem;
 `;
 
 function Mainpage() {
@@ -130,22 +155,48 @@ function Mainpage() {
         </ListHeader>
         <ListWrap>
           <ul>
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
-            <ListBox />
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine1</Label>
+                <Task>Mon</Task>
+              </LabelWrap>
+            </ListBox>
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine2</Label>
+                <Task>Tue</Task>
+              </LabelWrap>
+            </ListBox>
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine3</Label>
+                <Task>Wed</Task>
+              </LabelWrap>
+            </ListBox>
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine4</Label>
+                <Task>Thu</Task>
+              </LabelWrap>
+            </ListBox>
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine5</Label>
+                <Task>Fri</Task>
+              </LabelWrap>
+            </ListBox>
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine6</Label>
+                <Task>Sat</Task>
+              </LabelWrap>
+            </ListBox>
+            <ListBox>
+              <LabelWrap>
+                <Label>Routine7</Label>
+                <Task>Sun</Task>
+              </LabelWrap>
+            </ListBox>
           </ul>
         </ListWrap>
       </MainWrap>
