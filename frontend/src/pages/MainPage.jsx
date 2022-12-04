@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import Header from '../Components/Header';
 import Btn from '../Components/Button';
 
@@ -15,25 +14,6 @@ const MainWrap = styled.div`
   margin: auto;
   margin-top: 2rem;
   padding: 1rem;
-`;
-
-const MakeTodo = styled.button`
-  width: 7rem;
-  height: 3rem;
-  font-size: 15pt;
-  font-weight: bold;
-  background-color: lightyellow;
-  border: none;
-`;
-
-const TodoWrap = styled.div`
-  width: 60rem;
-  height: 10rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  margin: auto;
-  background-color: lightyellow;
 `;
 
 const ListHeader = styled.div`
@@ -90,52 +70,6 @@ const ListWrap = styled.div`
     background: green;
     border-radius: 0.4rem;
   }
-`;
-
-const TitleWrap = styled.div`
-  width: 10rem;
-  height: 10rem;
-  margin: auto;
-  padding-bottom: 1.5rem;
-  margin-left: 7rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-`;
-
-const TaskTitle = styled.div`
-  width: 10rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: 15pt;
-  font-weight: bold;
-`;
-
-const StatusTitle = styled.div`
-  width: 10rem;
-  height: 3rem;
-  margin-bottom: 1rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  font-size: 15pt;
-  font-weight: bold;
-`;
-
-const FormWrap = styled.div`
-  width: 35rem;
-  height: 10rem;
-  margin: auto;
-  margin-right: 7rem;
-  margin-top: 0.2rem;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
 `;
 
 const Select = styled.select`
@@ -261,37 +195,6 @@ function Mainpage() {
       <Header />
       <MainWrap>
         <form>
-          {/* <ListHeader>
-            <LinkWrap>
-              <MakeTodo value={task} onChange={taskHandler}>
-                MakeTodo
-              </MakeTodo>
-            </LinkWrap>
-            <BtnWrap>
-              <Btn name={'Todo 작성'} onClick={postData} />
-              <Btn name={'취소'} />
-            </BtnWrap>
-          </ListHeader>
-          <TodoWrap>
-            <TitleWrap>
-              <TaskTitle>task</TaskTitle>
-              <StatusTitle>status</StatusTitle>
-            </TitleWrap>
-            <FormWrap>
-              <Task
-                type='text'
-                value={task}
-                onChange={(e) => setTask(e.target.value)}
-              />
-              <Select onChange={onChangeTodo} value={contents}>
-                {StatusOptions.map((item, index) => (
-                  <Option key={item.key} value={item.key}>
-                    {item.value}
-                  </Option>
-                ))}
-              </Select>
-            </FormWrap>
-          </TodoWrap> */}
           <ListHeader>
             <LinkWrap>
               <TodoBtn>Todo</TodoBtn>
